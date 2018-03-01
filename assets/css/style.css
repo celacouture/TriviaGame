@@ -1,0 +1,11 @@
+body{
+  font-family: 'Raleway', sans-serif;
+  background-image: url(/Users/celacouture/Desktop/TriviaGame/assets/images/c00616.jpg);
+}
+.jumbotron{
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
