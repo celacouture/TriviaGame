@@ -39,53 +39,79 @@ var choiceFour=["1803", "Armadillo", "Jane Austen", "Town Lake", "32 degrees"];
 var correct = 0;
 var count=0;
 var time=61;
-var clock;
-var isClicked=false;
+var isSelected=false;
 
 function createQuiz (){
  var gameDiv=$(".quizBoard");
  var showQuestion=$("<span class='showquestion'>" + questionList[count] + "</span>");
  gameDiv.append(showQuestion);
  var choicesDiv=$(".quizBoard");
- var showChoiceOne=$("<p><input type='radio'> " + choiceOne[count]+ "</input></p>");
- var showChoiceTwo=$("<p><input type='radio'> "  + choiceTwo[count]+ "</input></p>");
- var showChoiceThree=$("<p><input type='radio'> "  + choiceThree[count]+ "</input></p>");
- var showChoiceFour=$("<p><input type ='radio'> "  + choiceFour[count]+ "</input></p>");
+ var showChoiceOne=$("<p><input type='radio' id='one'> " + choiceOne[count]+ "</input></p>");
+ var showChoiceTwo=$("<p><input type='radio' id='two'> "  + choiceTwo[count]+ "</input></p>");
+ var showChoiceThree=$("<p><input type='radio' id='three'> "  + choiceThree[count]+ "</input></p>");
+ var showChoiceFour=$("<p><input type ='radio' id='four'> "  + choiceFour[count]+ "</input></p>");
 showQuestion.append(showChoiceOne, showChoiceTwo, showChoiceThree, showChoiceFour);
 }
 
 $("#start").on('click', function (){
   startGame();
-//  setTimer();//
+  startTimer();
 })
 
 $("#next").on('click', function (){
   nextQuestion();
 })
 
-function setTimer(){
-  clearInterval(clock);
-  clock= setInterval(displayTime, 1000);
+$("#one").on("click", checkAnswer)
+$("#two").on("click", checkAnswer)
+$("#three").on("click", checkAnswer)
+$("#four").on("click", checkAnswer)
+
+function checkAnswer(){
+  if($(this).html()===answer[count]){
+    isSelected=true;
+    correct ++;
+  }
+console.log(checkAnswer);
+}
+
+function checkGameOver(){
+  if (count === questionList.length){
+
+  }
+}
+function startTimer(){
+  time --;
+  $("#start").html("<h3> You have  " + time + " seconds left </h3");
+  if (time===0){
+    alert("Times up!")
+    stopTimer();
+  }
 
 }
+
+function stopTimer(){
+  clearInterval(counter);
+}
+
 function nextQuestion(){
   createQuiz();
   count ++;
-
+checkGameOver();
 }
 function startGame(){
-  $("#start").hide();
-
-
-
-}
-
-function checkAnswer(){
-
+  counter= setInterval(startTimer, 1000);
 }
 
 
 
+function finalScore(){
+  if(count > questionList.Length){
+    var scoreDiv=$(".score");
+
+  }
+}
+checkGameOver();
 
 
 });
