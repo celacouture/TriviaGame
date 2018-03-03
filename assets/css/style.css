@@ -21,7 +21,11 @@ body{
   font-size: 24pt;
   margin-left: 45%;
 }
-
+#score{
+  padding: 30px;
+  text-align: center;
+  font-size: 30pt;
+}
 .quizBoard{
   background-color: #fff;
 }

@@ -46,14 +46,15 @@ function createQuiz (){
  var showQuestion=$("<span class='showquestion'>" + questionList[count] + "</span>");
  gameDiv.append(showQuestion);
  var choicesDiv=$(".quizBoard");
- var showChoiceOne=$("<p><input type='radio' id='one'> " + choiceOne[count]+ "</input></p>");
- var showChoiceTwo=$("<p><input type='radio' id='two'> "  + choiceTwo[count]+ "</input></p>");
- var showChoiceThree=$("<p><input type='radio' id='three'> "  + choiceThree[count]+ "</input></p>");
- var showChoiceFour=$("<p><input type ='radio' id='four'> "  + choiceFour[count]+ "</input></p>");
+ var showChoiceOne=$("<p><input type='radio' id='one choice'> " + choiceOne[count]+ "</input></p>");
+ var showChoiceTwo=$("<p><input type='radio' id='two choice'> "  + choiceTwo[count]+ "</input></p>");
+ var showChoiceThree=$("<p><input type='radio' id='three choice'> "  + choiceThree[count]+ "</input></p>");
+ var showChoiceFour=$("<p><input type ='radio' id='four choice'> "  + choiceFour[count]+ "</input></p>");
 showQuestion.append(showChoiceOne, showChoiceTwo, showChoiceThree, showChoiceFour);
 }
 
 $("#start").on('click', function (){
+
   startGame();
   startTimer();
 })
@@ -68,16 +69,22 @@ $("#three").on("click", checkAnswer)
 $("#four").on("click", checkAnswer)
 
 function checkAnswer(){
-  if($(this).html()===answer[count]){
+  if($('input').on('click')===answer[count]){
     isSelected=true;
     correct ++;
+
+  }
+  else{
+    isSelected=true;
+
   }
 console.log(checkAnswer);
 }
 
 function checkGameOver(){
-  if (count === questionList.length){
-
+  if (count >= questionList.length){
+  stopTimer();
+  finalScore();
   }
 }
 function startTimer(){
@@ -86,6 +93,7 @@ function startTimer(){
   if (time===0){
     alert("Times up!")
     stopTimer();
+    checkGameOver();
   }
 
 }
@@ -103,13 +111,12 @@ function startGame(){
   counter= setInterval(startTimer, 1000);
 }
 
+function reset(){
 
+}
 
 function finalScore(){
-  if(count > questionList.Length){
-    var scoreDiv=$(".score");
-
-  }
+    $(".quizBoard").html("<span id='score'> You have scored " + correct + " out of 5 correct !!</span>")
 }
 checkGameOver();
 
