@@ -1,68 +1,91 @@
-console.log("works");
-var timer=0;
-var correct=0;
-var gamePanel= $('.quizBoard');
-
-$(document).on('click', '#start', function(){
-  
-
-})
+$(document).ready(function(){
 //trivia guestions, choices and answers
-var questionArr=[
-  {
-    question: "In what year did Austin become the capital of Texas?",
-    answers: {
-      a: "1839",
-      b: "1845",
-      c: "1900",
-      d: "1803"
-    },
-    correctAnswer: "a"
+var questionList=["In what year did Austin become the capital of Texas?", "Before being named Austin, the city was called...?", "Austin was named for...", "Lady Bird Lake used to be called...", "What temperature does Barton Springs famously claim to be?"];
+var answer=["1839", "Waterloo", "Stephen F Austin", "Town Lake", "68 degrees"];
+var choiceOne=["1839", "Colorado City", "Sam Austin", "City Lake", "68 degress"];
+var choiceTwo=["1845", "Capital City", "Stephen F Austin", "Stevie Ray Vaughn Lake", "36 degress"];
+var choiceThree=["1900", "Waterloo", "Davey Austin", "Congress Lake", "50 degrees"];
+var choiceFour=["1803", "Armadillo", "Jane Austen", "Town Lake", "32 degrees"];
+
+
+/*  {
+    question: ,
+    choices: ["1839","1845","1900","1803"],
+    correctAnswer: 1
   },
   {
-    question: "Before being named Austin, the city was called...?",
-    answers: {
-      a: "Colorado City",
-      b: "Capital City",
-      c: "Waterloo",
-      d: "Armadillo"
-    },
-    correctAnswer: "c"
+    question:
+    choices: ["Colorado City", "Capital City","Waterloo","Armadillo"],
+    correctAnswer: 3
   },
   {
-    question: "Austin was named for...",
-    answers: {
-      a: "Sam Austin",
-      b: "Stephen F. Austin",
-      c: "Davey Austin",
-      d: "Jane Austen"
-    },
-    correctAnswer: "b"
+    question:
+    answers: ["Sam Austin", "Stephen F. Austin", "Davey Austin", "Jane Austen"],
+    correctAnswer: 2
   },
   {
-    question: "Lady Bird Lake used to be called...",
-    answers: {
-      a: "City Lake",
-      b: "Stevie Ray Vaughn Lake",
-      c: "Congress Lake",
-      d: "Town Lake"
-    },
-    correctAnswer: "d"
+    question:
+    answers: ["City Lake", "Stevie Ray Vaughn Lake", "Congress Lake", "Town Lake"],
+    correctAnswer: 4
   },
 
   {
-    question: "Which famous person below has called Austin home?",
-    answers: {
-      a: "Robert Plant",
-      b: "Elijah Wood",
-      c: "Sandra Bullock",
-      d: "All of the above",
-      e: "None of the above"
-    },
-    correctAnswer: "d"
+    question:
+    answers: ["68 degress", "36 degrees", "50 degrees", "32 degrees"],
+    correctAnswer: 1
   },
-]
+]*/
 
-function createGame (){
+var correct = 0;
+var count=0;
+var time=61;
+var clock;
+var isClicked=false;
+
+function createQuiz (){
+ var gameDiv=$(".quizBoard");
+ var showQuestion=$("<span class='showquestion'>" + questionList[count] + "</span>");
+ gameDiv.append(showQuestion);
+ var choicesDiv=$(".quizBoard");
+ var showChoiceOne=$("<p><input type='radio'> " + choiceOne[count]+ "</input></p>");
+ var showChoiceTwo=$("<p><input type='radio'> "  + choiceTwo[count]+ "</input></p>");
+ var showChoiceThree=$("<p><input type='radio'> "  + choiceThree[count]+ "</input></p>");
+ var showChoiceFour=$("<p><input type ='radio'> "  + choiceFour[count]+ "</input></p>");
+showQuestion.append(showChoiceOne, showChoiceTwo, showChoiceThree, showChoiceFour);
+}
+
+$("#start").on('click', function (){
+  startGame();
+//  setTimer();//
+})
+
+$("#next").on('click', function (){
+  nextQuestion();
+})
+
+function setTimer(){
+  clearInterval(clock);
+  clock= setInterval(displayTime, 1000);
 
 }
+function nextQuestion(){
+  createQuiz();
+  count ++;
+
+}
+function startGame(){
+  $("#start").hide();
+
+
+
+}
+
+function checkAnswer(){
+
+}
+
+
+
+
+
+});
